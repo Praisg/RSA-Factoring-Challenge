@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <math.h>
+
+bool is_prime(int n) {
+    if (n == 2 || n == 3) {
+        return true;
+    }
+    if (n % 2 == 0 || n % 3 == 0) {
+        return false;
+    }
+    int i = 5;
+    int w = 2;
+    while (i * i <= n) {
+        if (n % i == 0) {
+            return false;
+        }
+        i += w;
+        w = 6 - w;
+    }
+    return true;
+}
+
+void factorize(int n) {
+    int p = 0;
+    int q = 0;
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) {
+            if (is_prime(i) && is_prime(n/i)) {
+                p = i;
+                q = n/i;
+                break;
+            }
+        }
+    }
+    if (p == 0 || q == 0) {
+        printf("Unable to factorize %d into two prime factors\n", n);
+    } else {
+        printf("%d=%d*%d\n", n, p, q);
+    }
+}
+
+int main(int argc, charHere's the complete C code to factor a single number into its two prime factors:
